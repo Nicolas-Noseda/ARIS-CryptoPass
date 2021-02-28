@@ -2,6 +2,7 @@ from PyQt5 import QtGui
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QVBoxLayout, QGroupBox, QGridLayout, QPushButton, QLineEdit, QLabel
 
+from src.classes.crypto import CryptFile
 from src.classes.files_management import create_new_files
 
 
@@ -77,8 +78,9 @@ class CreateUserWidget(QVBoxLayout):
 
     def createUser(self):
         print(str(self.lineEditUser.text()))
-        print(str(self.passPhrase.text()))
         create_new_files(user=str(self.lineEditUser.text()))
+        cryptFile = CryptFile(str(self.passPhrase.text()))
+        self.window.goToPasswordScreen("", cryptFile)
 
     def checkUser(self):
         if len(self.lineEditUser.text()) > 0 and len(self.passPhrase.text()) > 30:

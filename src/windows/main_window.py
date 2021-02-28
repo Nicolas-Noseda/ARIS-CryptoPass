@@ -6,17 +6,19 @@ from PyQt5.QtWidgets import QMainWindow, QDesktopWidget
 
 from src.widgets.create_user_widget import CreateUserWidget
 from src.widgets.login_widget import LoginWidget
+from src.widgets.password_screen_widget import PasswordScreenWidget
 
 
 class MainWindow(QMainWindow):
     def __init__(self, *args, list_user):
         super().__init__(*args)
         self.list_user = list_user
+
         self.setupWindow()
 
     def setupWindow(self):
         self.setFixedWidth(600)
-        self.setMinimumHeight(500)
+        self.setFixedHeight(500)
         self.setWindowTitle("ARIS-CryptoPass")
         scriptDir = os.path.dirname(os.path.realpath(__file__))
         self.setWindowIcon(QIcon(scriptDir + os.path.sep + "images" + os.path.sep + "Icon_Head.png"))
@@ -40,6 +42,7 @@ class MainWindow(QMainWindow):
         wid.setLayout(CreateUserWidget(window=self))
 
     def goToPasswordScreen(self, password, cryptFile):
-        self.cryptFile = cryptFile
-        self.password = password
+        wid = QtWidgets.QWidget(self)
+        self.setCentralWidget(wid)
+        wid.setLayout(PasswordScreenWidget(window=self, passwordList=password, cryptFile=cryptFile))
 
