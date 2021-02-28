@@ -11,7 +11,7 @@ from src.classes.crypto import CryptFile
 class LoginWidget(QVBoxLayout):
     def __init__(self, *args, window, list_user):
         super().__init__(*args)
-        self.attempToConnect = 0
+        self.attemptToConnect = 0
         self.window = window
         self.list_user = list_user
         self.addObjectToLayout()
@@ -91,14 +91,14 @@ class LoginWidget(QVBoxLayout):
         self.addWidget(self.groupBox)
 
     def goToPasswordScreen(self):
+        cryptFile = CryptFile(str(self.passPhrase.text()))
         try:
-            cryptFile = CryptFile(str(self.passPhrase.text()))
             password = cryptFile.decrypt_file(str(self.comboBoxUser.currentText()))
             self.window.goToPasswordScreen(password, cryptFile)
         except InvalidToken as e:
-            if self.attempToConnect < 5:
-                self.attempToConnect += 1
-                self.labelError.setText("The passphrase is not good ! Attempt " + str(self.attempToConnect) + "/5")
+            if self.attemptToConnect < 5:
+                self.attemptToConnect += 1
+                self.labelError.setText("The passphrase is not good ! Attempt " + str(self.attemptToConnect) + "/5")
                 self.passPhrase.setText("")
                 self.labelError.setHidden(False)
                 self.buttonValidate.setEnabled(False)
