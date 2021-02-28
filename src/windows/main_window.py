@@ -4,16 +4,20 @@ from PyQt5 import QtWidgets
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QMainWindow, QDesktopWidget
 
+from src.widgets.create_password_widget import CreatePasswordWidget
 from src.widgets.create_user_widget import CreateUserWidget
 from src.widgets.login_widget import LoginWidget
 from src.widgets.password_screen_widget import PasswordScreenWidget
 
 
 class MainWindow(QMainWindow):
+
     def __init__(self, *args, list_user):
         super().__init__(*args)
         self.list_user = list_user
-
+        self.password = ""
+        self.user = ""
+        self.cryptFile = None
         self.setupWindow()
 
     def setupWindow(self):
@@ -41,8 +45,25 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(wid)
         wid.setLayout(CreateUserWidget(window=self))
 
-    def goToPasswordScreen(self, password, cryptFile):
+    def goToPasswordScreen(self, password, cryptFile, user):
+        if self.user == "":
+            self.user = user
+
+        if self.cryptFile is None:
+            self.cryptFile = cryptFile
+
+        if self.password == "" and password != "":
+            self.password = password
+            self.cryptFile.encrypt_file(self.password, self.user)
+        elif password != "":
+            self.password += ";!&?;" + password
+            self.cryptFile.encrypt_file(self.password, self.user)
+
         wid = QtWidgets.QWidget(self)
         self.setCentralWidget(wid)
-        wid.setLayout(PasswordScreenWidget(window=self, passwordList=password, cryptFile=cryptFile))
+        wid.setLayout(PasswordScreenWidget(window=self, passwordList=self.password, cryptFile=self.cryptFile))
 
+    def goToCreateNewPassword(self):
+        wid = QtWidgets.QWidget(self)
+        self.setCentralWidget(wid)
+        wid.setLayout(CreatePasswordWidget(window=self))

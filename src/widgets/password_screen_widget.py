@@ -1,6 +1,6 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QVBoxLayout, QGroupBox, QGridLayout, QScrollArea, QScrollBar, QPushButton, QHBoxLayout, \
-    QLineEdit
+    QLineEdit, QLabel
 
 from src.widgets.password.website_password_widget import WebsitePasswordWidget
 
@@ -38,19 +38,15 @@ class PasswordScreenWidget(QVBoxLayout):
         groupBoxPassword.setStyleSheet("QGroupBox{border:none}")
 
         vboxPassword = QVBoxLayout()
-        vboxPassword.addWidget(WebsitePasswordWidget(window=self.window, website_password="Site=www.google.com/User=Nicolas/Password=StrongPasswordWaou"))
-        vboxPassword.addWidget(WebsitePasswordWidget(window=self.window,
-                                                   website_password="Site=www.google.com/User=Nicolas/Password=StrongPasswordWaou"))
-        vboxPassword.addWidget(WebsitePasswordWidget(window=self.window,
-                                                   website_password="Site=www.google.com/User=Nicolas/Password=StrongPasswordWaou"))
-        vboxPassword.addWidget(WebsitePasswordWidget(window=self.window,
-                                                   website_password="Site=www.google.com/User=Nicolas/Password=StrongPasswordWaou"))
-        vboxPassword.addWidget(WebsitePasswordWidget(window=self.window,
-                                                   website_password="Site=www.google.com/User=Nicolas/Password=StrongPasswordWaou"))
-        vboxPassword.addWidget(WebsitePasswordWidget(window=self.window,
-                                                   website_password="Site=www.google.com/User=Nicolas/Password=StrongPasswordWaou"))
-        vboxPassword.addWidget(WebsitePasswordWidget(window=self.window,
-                                                   website_password="Site=www.google.com/User=Nicolas/Password=StrongPasswordWaou"))
+        if self.passwordList != "":
+            password_split = self.passwordList.split(";!&?;")
+            for password in password_split:
+                vboxPassword.addWidget(WebsitePasswordWidget(window=self.window, website_password=password))
+        else :
+            labelNoPasswordSaved = QLabel(self.window)
+            labelNoPasswordSaved.setText('You don\'t have saved password, click "Create new password" to save one')
+            labelNoPasswordSaved.setWordWrap(True)
+            vboxPassword.addWidget(labelNoPasswordSaved)
 
         scrollArea.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
         scrollArea.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
@@ -64,8 +60,12 @@ class PasswordScreenWidget(QVBoxLayout):
         buttonCreateNewPassword.setText("Create new password")
         buttonCreateNewPassword.setFixedHeight(25)
         buttonCreateNewPassword.setFixedWidth(150)
+        buttonCreateNewPassword.clicked.connect(self.createNewPassword)
         vbox.addWidget(scrollArea)
         vbox.addWidget(buttonCreateNewPassword, alignment=Qt.AlignCenter)
         screenBox.setLayout(vbox)
 
         self.addWidget(screenBox)
+
+    def createNewPassword(self):
+        self.window.goToCreateNewPassword()

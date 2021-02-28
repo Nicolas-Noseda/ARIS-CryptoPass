@@ -80,7 +80,7 @@ class CreateUserWidget(QVBoxLayout):
         print(str(self.lineEditUser.text()))
         create_new_files(user=str(self.lineEditUser.text()))
         cryptFile = CryptFile(str(self.passPhrase.text()))
-        self.window.goToPasswordScreen("", cryptFile)
+        self.window.goToPasswordScreen("", cryptFile, user=str(self.lineEditUser.text()))
 
     def checkUser(self):
         if len(self.lineEditUser.text()) > 0 and len(self.passPhrase.text()) > 30:

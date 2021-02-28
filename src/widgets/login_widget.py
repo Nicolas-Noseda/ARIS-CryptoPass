@@ -94,7 +94,7 @@ class LoginWidget(QVBoxLayout):
         cryptFile = CryptFile(str(self.passPhrase.text()))
         try:
             password = cryptFile.decrypt_file(str(self.comboBoxUser.currentText()))
-            self.window.goToPasswordScreen(password, cryptFile)
+            self.window.goToPasswordScreen(password, cryptFile, user=str(self.comboBoxUser.currentText()))
         except InvalidToken as e:
             if self.attemptToConnect < 5:
                 self.attemptToConnect += 1
@@ -105,7 +105,7 @@ class LoginWidget(QVBoxLayout):
             else:
                 sys.exit()
         except ValueError as e:
-            self.window.goToPasswordScreen('', cryptFile)
+            self.window.goToPasswordScreen('', cryptFile, user=str(self.comboBoxUser.currentText()))
 
     def goToCreateUserScreen(self):
         self.window.useCreateUserLayout()
