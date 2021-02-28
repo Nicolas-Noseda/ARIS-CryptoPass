@@ -13,16 +13,16 @@ class CryptFile:
     path_to_files = os.path.dirname(os.path.realpath(__file__)) + os.path.sep + "files" + os.path.sep
 
     def __init__(self, passphrase):
-        print(self.path_to_files)
+        print(passphrase)
         salt = b'30R8IF8fFgFnfe37'
         kdf = PBKDF2HMAC(
-            algorithm=hashes.SHA512(),
-            length=256,
+            algorithm=hashes.SHA256(),
+            length=32,
             salt=salt,
             iterations=100000,
             backend=default_backend()
         )
-        self.key = base64.urlsafe_b64encode(kdf.derive(passphrase))
+        self.key = base64.urlsafe_b64encode(kdf.derive(passphrase.encode()))
         print(self.key)
 
     def encrypt_file(self, password_file, user):
@@ -40,14 +40,17 @@ class CryptFile:
             with open(file_path, 'rb') as f:
                 data = f.read()
 
-            fernet = Fernet(self.key)
+            if len(data) > 0:
+                fernet = Fernet(self.key)
 
-            try:
-                decrypted = fernet.decrypt(data)
-                return decrypted.decode()
+                try:
+                    decrypted = fernet.decrypt(data)
+                    return decrypted.decode()
 
-            except InvalidToken as e:
-                print("Invalid Key - Unsuccessfully decrypted")
+                except InvalidToken as e:
+                    raise
+            else:
+                raise ValueError()
 
 
 

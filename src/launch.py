@@ -1,7 +1,4 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QLabel, QMainWindow
-from PyQt5.QtCore import Qt
-import src
 from classes.app import CryptoPassApp
 
 
