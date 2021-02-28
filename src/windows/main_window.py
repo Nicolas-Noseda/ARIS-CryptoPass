@@ -1,7 +1,10 @@
 import os
 
+from PyQt5 import QtWidgets
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QMainWindow, QDesktopWidget
+from PyQt5.QtWidgets import QMainWindow, QDesktopWidget, QVBoxLayout
+
+from src.widgets.login_widget import LoginWidget
 
 
 class MainWindow(QMainWindow):
@@ -20,3 +23,14 @@ class MainWindow(QMainWindow):
         bottomRightPoint = QDesktopWidget().availableGeometry(screen=1).bottomRight()
         qtRectangle.moveBottomRight(bottomRightPoint)
         self.move(qtRectangle.topLeft())
+        self.createLoginLayout()
+
+    def createLoginLayout(self):
+        wid = QtWidgets.QWidget(self)
+        self.setCentralWidget(wid)
+        list_user = []
+        list_user.append("User1")
+        list_user.append("User2")
+        list_user.append("User3")
+        wid.setLayout(LoginWidget(window=self, list_user=list_user))
+
