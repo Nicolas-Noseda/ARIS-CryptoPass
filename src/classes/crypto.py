@@ -13,7 +13,6 @@ class CryptFile:
     path_to_files = os.path.dirname(os.path.realpath(__file__)) + os.path.sep + "files" + os.path.sep
 
     def __init__(self, passphrase):
-        print(passphrase)
         salt = b'30R8IF8fFgFnfe37'
         kdf = PBKDF2HMAC(
             algorithm=hashes.SHA256(),
@@ -23,7 +22,6 @@ class CryptFile:
             backend=default_backend()
         )
         self.key = base64.urlsafe_b64encode(kdf.derive(passphrase.encode()))
-        print(self.key)
 
     def encrypt_file(self, password_file, user):
         file_path = self.path_to_files + user + ".encrypted"
