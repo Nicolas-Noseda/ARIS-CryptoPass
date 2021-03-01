@@ -24,18 +24,21 @@ class WebsitePasswordWidget(QWidget):
         self.labelWebsite.setText("Website: ")
         self.labelWebsite.setFont(QtGui.QFont("Sanserif", 10))
         self.labelWebsite.setAlignment(Qt.AlignLeft)
+        self.labelWebsite.setFixedWidth(100)
         gridLayout.addWidget(self.labelWebsite, 0, 0)
 
         self.labelUser = QLabel(self.window)
         self.labelUser.setText("Username: ")
         self.labelUser.setFont(QtGui.QFont("Sanserif", 10))
         self.labelUser.setAlignment(Qt.AlignLeft)
+        self.labelWebsite.setFixedWidth(100)
         gridLayout.addWidget(self.labelUser, 1, 0)
 
         self.labelPassword = QLabel(self.window)
         self.labelPassword.setText("Password: ")
         self.labelPassword.setFont(QtGui.QFont("Sanserif", 10))
         self.labelPassword.setAlignment(Qt.AlignLeft)
+        self.labelWebsite.setFixedWidth(100)
         gridLayout.addWidget(self.labelPassword, 2, 0)
 
         self.labelWebsiteValue = QLabel(self.window)
@@ -45,14 +48,14 @@ class WebsitePasswordWidget(QWidget):
         gridLayout.addWidget(self.labelWebsiteValue, 0, 1)
 
         self.labelUserValue = QLabel(self.window)
-        self.labelUserValue.setText("****************")
+        self.labelUserValue.setText("*Click 'Show' to view*")
         self.labelUserValue.setTextInteractionFlags(Qt.TextSelectableByMouse)
         self.labelUserValue.setFont(QtGui.QFont("Sanserif", 10))
         self.labelUserValue.setAlignment(Qt.AlignLeft)
         gridLayout.addWidget(self.labelUserValue, 1, 1)
 
         self.labelPasswordValue = QLabel(self.window)
-        self.labelPasswordValue.setText("****************")
+        self.labelPasswordValue.setText("*Click 'Show' to view*")
         self.labelPasswordValue.setTextInteractionFlags(Qt.TextSelectableByMouse)
         self.labelPasswordValue.setFont(QtGui.QFont("Sanserif", 10))
         self.labelPasswordValue.setAlignment(Qt.AlignLeft)

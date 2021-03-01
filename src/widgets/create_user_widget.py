@@ -43,7 +43,7 @@ class CreateUserWidget(QVBoxLayout):
 
         self.passPhrase = QLineEdit(self.window)
         self.passPhrase.setFont(QtGui.QFont("Sanserif", 15))
-        self.passPhrase.setEchoMode(QLineEdit.Password)
+        self.passPhrase.returnPressed.connect(self.createUser)
         self.passPhrase.textChanged.connect(self.checkPassPhrase)
         vbox2.addWidget(self.passPhrase, alignment=Qt.AlignTop)
 
@@ -77,10 +77,15 @@ class CreateUserWidget(QVBoxLayout):
         self.addWidget(self.groupBox)
 
     def createUser(self):
-        print(str(self.lineEditUser.text()))
-        create_new_files(user=str(self.lineEditUser.text()))
-        cryptFile = CryptFile(str(self.passPhrase.text()))
-        self.window.goToPasswordScreen("", cryptFile, user=str(self.lineEditUser.text()))
+        if len(self.lineEditUser.text()) > 0 and len(self.passPhrase.text()) > 30:
+            self.buttonValidate.setEnabled(True)
+            self.labelError.setHidden(True)
+            create_new_files(user=str(self.lineEditUser.text()))
+            cryptFile = CryptFile(str(self.passPhrase.text()))
+            self.window.goToPasswordScreen("", cryptFile, user=str(self.lineEditUser.text()))
+        else:
+            self.labelError.setHidden(False)
+            self.buttonValidate.setEnabled(False)
 
     def checkUser(self):
         if len(self.lineEditUser.text()) > 0 and len(self.passPhrase.text()) > 30:
