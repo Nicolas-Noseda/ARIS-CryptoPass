@@ -50,6 +50,7 @@ class LoginWidget(QVBoxLayout):
         self.passPhrase.setFont(QtGui.QFont("Sanserif", 15))
         self.passPhrase.setEchoMode(QLineEdit.Password)
         self.passPhrase.textChanged.connect(self.checkPassPhrase)
+        self.passPhrase.returnPressed.connect(self.goToPasswordScreen)
         vbox2.addWidget(self.passPhrase, alignment=Qt.AlignTop)
 
         hbox = QHBoxLayout()
@@ -91,21 +92,27 @@ class LoginWidget(QVBoxLayout):
         self.addWidget(self.groupBox)
 
     def goToPasswordScreen(self):
-        cryptFile = CryptFile(str(self.passPhrase.text()))
-        try:
-            password = cryptFile.decrypt_file(str(self.comboBoxUser.currentText()))
-            self.window.goToPasswordScreen(password, cryptFile, user=str(self.comboBoxUser.currentText()))
-        except InvalidToken as e:
-            if self.attemptToConnect < 5:
-                self.attemptToConnect += 1
-                self.labelError.setText("The passphrase is not good ! Attempt " + str(self.attemptToConnect) + "/5")
-                self.passPhrase.setText("")
-                self.labelError.setHidden(False)
-                self.buttonValidate.setEnabled(False)
-            else:
-                sys.exit()
-        except ValueError as e:
-            self.window.goToPasswordScreen('', cryptFile, user=str(self.comboBoxUser.currentText()))
+        if len(self.passPhrase.text()) > 30:
+            self.labelError.setHidden(True)
+            self.buttonValidate.setEnabled(True)
+            cryptFile = CryptFile(str(self.passPhrase.text()))
+            try:
+                password = cryptFile.decrypt_file(str(self.comboBoxUser.currentText()))
+                self.window.goToPasswordScreen(password, cryptFile, user=str(self.comboBoxUser.currentText()))
+            except InvalidToken as e:
+                if self.attemptToConnect < 5:
+                    self.attemptToConnect += 1
+                    self.labelError.setText("The passphrase is not good ! Attempt " + str(self.attemptToConnect) + "/5")
+                    self.passPhrase.setText("")
+                    self.labelError.setHidden(False)
+                    self.buttonValidate.setEnabled(False)
+                else:
+                    sys.exit()
+            except ValueError as e:
+                self.window.goToPasswordScreen('', cryptFile, user=str(self.comboBoxUser.currentText()))
+        else:
+            self.labelError.setHidden(False)
+            self.buttonValidate.setEnabled(False)
 
     def goToCreateUserScreen(self):
         self.window.useCreateUserLayout()

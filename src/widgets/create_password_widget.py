@@ -43,6 +43,7 @@ class CreatePasswordWidget(QVBoxLayout):
         self.websiteValue = QLineEdit(self.window)
         self.websiteValue.setFont(QtGui.QFont("Sanserif", 15))
         self.websiteValue.textChanged.connect(self.checkAllValue)
+        self.websiteValue.returnPressed.connect(self.savePassword)
         vbox2.addWidget(self.websiteValue, alignment=Qt.AlignTop)
 
         vbox3 = QVBoxLayout()
@@ -55,6 +56,7 @@ class CreatePasswordWidget(QVBoxLayout):
         self.usernameValue = QLineEdit(self.window)
         self.usernameValue.setFont(QtGui.QFont("Sanserif", 15))
         self.usernameValue.textChanged.connect(self.checkAllValue)
+        self.usernameValue.returnPressed.connect(self.savePassword)
         vbox3.addWidget(self.usernameValue, alignment=Qt.AlignTop)
 
         vbox4 = QVBoxLayout()
@@ -67,15 +69,15 @@ class CreatePasswordWidget(QVBoxLayout):
         self.passwordValue = QLineEdit(self.window)
         self.passwordValue.setText(self.get_random_password(32))
         self.passwordValue.setFont(QtGui.QFont("Sanserif", 15))
-
+        self.passwordValue.returnPressed.connect(self.savePassword)
         self.passwordValue.textChanged.connect(self.checkAllValue)
         vbox4.addWidget(self.passwordValue, alignment=Qt.AlignTop)
 
         self.buttonValidate = QPushButton(self.window)
-        self.buttonValidate.setText("Validate User")
+        self.buttonValidate.setText("Create the password")
         self.buttonValidate.setFont(QtGui.QFont("Sanserif", 15))
         self.buttonValidate.setFixedHeight(50)
-        self.buttonValidate.setFixedWidth(200)
+        self.buttonValidate.setFixedWidth(230)
         self.buttonValidate.setEnabled(False)
         self.buttonValidate.clicked.connect(self.savePassword)
 
@@ -95,9 +97,13 @@ class CreatePasswordWidget(QVBoxLayout):
 
 
     def savePassword(self):
-        password = "Website=!=" + str(self.websiteValue.text()) + "!?&User=!=" + str(self.usernameValue.text()) \
-                   + "!?&Password=!=" + str(self.passwordValue.text())
-        self.window.goToPasswordScreen(password=password, cryptFile=None, user=None)
+        if len(self.websiteValue.text()) > 0 and len(self.usernameValue.text()) > 0 and len(self.passwordValue.text()):
+            self.buttonValidate.setEnabled(True)
+            password = "Website=!=" + str(self.websiteValue.text()) + "!?&User=!=" + str(self.usernameValue.text()) \
+                       + "!?&Password=!=" + str(self.passwordValue.text())
+            self.window.goToPasswordScreen(password=password, cryptFile=None, user=None)
+        else:
+            self.buttonValidate.setEnabled(False)
 
     def checkAllValue(self):
         if len(self.websiteValue.text()) > 0 and len(self.usernameValue.text()) > 0 and len(self.passwordValue.text()):
