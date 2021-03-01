@@ -24,11 +24,6 @@ class CreatePasswordWidget(QVBoxLayout):
         gridLayout.addWidget(self.labelNew)
 
         vbox1 = QVBoxLayout()
-        self.labelType = QLabel(self.window)
-        self.labelType.setText("Type of password :")
-        self.labelType.setFont(QtGui.QFont("Sanserif", 15))
-        vbox1.addWidget(self.labelType, alignment=Qt.AlignBottom)
-
         self.comboBoxType = QComboBox(self.window)
         self.comboBoxType.setFont(QtGui.QFont("Sanserif", 15))
         self.comboBoxType.addItem("Website")
@@ -62,7 +57,7 @@ class CreatePasswordWidget(QVBoxLayout):
         vbox4 = QVBoxLayout()
         vbox4.setStretch(1, 1)
         self.labelPassword = QLabel(self.window)
-        self.labelPassword.setText("Password :")
+        self.labelPassword.setText("Suggested Password :")
         self.labelPassword.setFont(QtGui.QFont("Sanserif", 15))
         vbox4.addWidget(self.labelPassword, alignment=Qt.AlignBottom)
 
