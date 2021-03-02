@@ -74,8 +74,8 @@ class WebsitePasswordWidget(QWidget):
     def buttonEyesClicked(self):
         if self.showPassword:
             self.showPassword = False
-            self.labelPasswordValue.setText("****************")
-            self.labelUserValue.setText("****************")
+            self.labelPasswordValue.setText("*Click 'Show' to view*")
+            self.labelUserValue.setText("*Click 'Show' to view*")
             self.buttonEyes.setText("Show")
         else:
             self.showPassword = True
