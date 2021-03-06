@@ -4,6 +4,7 @@ from PyQt5.QtGui import QInputMethodEvent
 from PyQt5.QtWidgets import QVBoxLayout, QGroupBox, QGridLayout, QScrollArea, QScrollBar, QPushButton, QHBoxLayout, \
     QLineEdit, QLabel
 
+from src.widgets.password.credit_cards_widget import CreditCardsWidget
 from src.widgets.password.website_password_widget import WebsitePasswordWidget
 
 
@@ -80,7 +81,12 @@ class PasswordScreenWidget(QVBoxLayout):
         if self.passwordList != "":
             password_split = self.passwordList.split(";!&?;")
             for password in password_split:
-                vboxPassword.addWidget(WebsitePasswordWidget(window=self.window, website_password=password), alignment=Qt.AlignTop)
+                if "Website" in password:
+                    vboxPassword.addWidget(WebsitePasswordWidget(window=self.window, website_password=password),
+                                           alignment=Qt.AlignTop)
+                elif "Number" in password:
+                    vboxPassword.addWidget(CreditCardsWidget(window=self.window, credit_cards=password),
+                                           alignment=Qt.AlignTop)
         else:
             labelNoPasswordSaved = QLabel(self.window)
             labelNoPasswordSaved.setText('You don\'t have saved password, click "Create new password" to save one')

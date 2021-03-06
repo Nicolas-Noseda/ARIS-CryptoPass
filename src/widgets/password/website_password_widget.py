@@ -1,5 +1,6 @@
 from PyQt5 import QtGui
 from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QVBoxLayout, QGridLayout, QGroupBox, QLabel, QPushButton, QWidget
 
 from src.model.website_password_model import WebsitePasswordModel
@@ -12,6 +13,7 @@ class WebsitePasswordWidget(QWidget):
     def __init__(self, *args, window, website_password):
         super().__init__(*args)
         self.window = window
+        self.website_password_string = website_password
         self.website_password = WebsitePasswordModel(website_password)
         self.createWidget()
 
@@ -68,6 +70,13 @@ class WebsitePasswordWidget(QWidget):
         self.buttonEyes.setFixedWidth(80)
         gridLayout.addWidget(self.buttonEyes, 1, 2)
 
+        self.buttonDelete = QPushButton(self.window)
+        self.buttonDelete.setText("X")
+        self.buttonDelete.setFont(QtGui.QFont("Sanserif", 10))
+        self.buttonDelete.setFixedWidth(20)
+        self.buttonDelete.clicked.connect(self.deletePassword)
+        gridLayout.addWidget(self.buttonDelete, 0, 2, alignment=Qt.AlignRight)
+
         self.setFixedHeight(100)
         self.setLayout(gridLayout)
 
@@ -82,3 +91,6 @@ class WebsitePasswordWidget(QWidget):
             self.labelPasswordValue.setText(self.website_password.password)
             self.labelUserValue.setText(self.website_password.username)
             self.buttonEyes.setText("Hide")
+
+    def deletePassword(self):
+        self.window.deletePasswordFromPasswordList(self.website_password_string)
