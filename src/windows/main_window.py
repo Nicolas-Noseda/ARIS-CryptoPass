@@ -67,3 +67,17 @@ class MainWindow(QMainWindow):
         wid = QtWidgets.QWidget(self)
         self.setCentralWidget(wid)
         wid.setLayout(CreatePasswordWidget(window=self))
+
+    def deletePasswordFromPasswordList(self, passwordToDelete):
+        print(passwordToDelete)
+        passwordtoSave = ""
+        password_split = self.password.split(";!&?;")
+        for password in password_split:
+            if password != passwordToDelete:
+                if passwordtoSave == "":
+                    passwordtoSave += password
+                else:
+                    passwordtoSave += ";!&?;" + password
+        self.cryptFile.encrypt_file(passwordtoSave, self.user)
+        self.password = passwordtoSave
+        self.goToPasswordScreen("", None, "")
