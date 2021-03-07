@@ -90,12 +90,16 @@ Launch this to create link to your desktop :
 or if the "~" don't work :
  
  `ln -s /usr/share/applications/ARIS-CryptoPass.desktop YOUR_HOME_DIRECTORY/Desktop/ARIS-CryptoPass.desktop`
+ 
+or if the Desktop is Bureau :
+
+ `ln -s /usr/share/applications/ARIS-CryptoPass.desktop ~/Bureau/ARIS-CryptoPass.desktop`
+
 
 Your good to go :smile:
+If you have any issue, fell free to create an issue.
+
 
 # Installation For Windows (not yet available)
 
 [(Back to top)](#table-of-contents)
-
-
-
