@@ -30,7 +30,7 @@ class MainWindow(QMainWindow):
         scriptDir = os.path.dirname(os.path.realpath(__file__))
         self.setWindowIcon(QIcon(scriptDir + os.path.sep + "images" + os.path.sep + "Icon_Head.png"))
         qtRectangle = self.frameGeometry()
-        bottomRightPoint = QDesktopWidget().availableGeometry(screen=1).bottomRight()
+        bottomRightPoint = QDesktopWidget().availableGeometry(screen=0).bottomRight()
         qtRectangle.moveBottomRight(bottomRightPoint)
         self.move(qtRectangle.topLeft())
         if len(self.list_user) > 0:
