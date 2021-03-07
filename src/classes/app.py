@@ -1,6 +1,7 @@
 import os
 
-from PyQt5.QtWidgets import QApplication
+from PyQt5.QtGui import QIcon
+from PyQt5.QtWidgets import QApplication, QSystemTrayIcon
 
 from src.windows.main_window import MainWindow
 

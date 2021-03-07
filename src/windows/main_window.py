@@ -1,9 +1,11 @@
 import os
 
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtCore, QtGui
+from PyQt5.QtCore import QEvent, Qt
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QMainWindow, QDesktopWidget
+from PyQt5.QtWidgets import QMainWindow, QDesktopWidget, QSystemTrayIcon, QMenu, QAction
 
+from src.classes import app
 from src.widgets.create_password_widget import CreatePasswordWidget
 from src.widgets.create_user_widget import CreateUserWidget
 from src.widgets.login_widget import LoginWidget
@@ -18,6 +20,7 @@ class MainWindow(QMainWindow):
         self.password = ""
         self.user = ""
         self.cryptFile = None
+        self.tray = None
         self.setupWindow()
 
     def setupWindow(self):
@@ -34,6 +37,53 @@ class MainWindow(QMainWindow):
             self.useLoginUserLayout()
         else:
             self.useCreateUserLayout()
+
+    def closeEvent(self, event):
+        self.addTrayIcon()
+        self.hide()
+        self.setVisible(False)
+        event.ignore()
+
+    def changeEvent(self, event):
+        if event.type() == QEvent.WindowStateChange:
+            if self.windowState() == Qt.WindowMinimized:
+                self.closeEvent(event)
+
+    def addTrayIcon(self):
+        if self.tray == None:
+            self.tray = QSystemTrayIcon()
+            scriptDir = os.path.dirname(os.path.realpath(__file__))
+            self.tray.setIcon(QIcon(scriptDir + os.path.sep + "images" + os.path.sep + "Icon_Head.png"))
+            self.tray.setToolTip("ARIS-CryptoPass")
+            self.tray.activated.connect(self.trayIconClick)
+            self.menu = QMenu()
+            self.openAction = QAction("Open ARIS-CryptoPass")
+            self.openAction.triggered.connect(self.reopenWindow)
+            self.menu.addAction(self.openAction)
+            self.exitAction = QAction("Close ARIS-CryptoPass")
+            self.exitAction.triggered.connect(self.quitApp)
+            self.menu.addAction(self.exitAction)
+            self.tray.setContextMenu(self.menu)
+            self.tray.show()
+        else:
+            self.tray.show()
+            self.tray.setVisible(True)
+        self.tray.showMessage("ARIS-CrytoPass",
+                              "The app is still running, left-click to reopen, right-click to access menu")
+
+    def quitApp(self):
+        app.get_app().quit()
+
+    def reopenWindow(self):
+        self.show()
+        self.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
+        self.setVisible(True)
+        self.tray.hide()
+        self.tray.setVisible(False)
+
+    def trayIconClick(self, reason):
+        if reason == 3:
+            self.reopenWindow()
 
     def useLoginUserLayout(self):
         wid = QtWidgets.QWidget(self)
