@@ -16,6 +16,5 @@ Type=Application
 Version=v1.0.0
 X-DBUS-ServiceName=
 X-DBUS-StartupType=
-X-Icon-Path=/home/nicolas/PycharmProjects/ARIS-CryptoPass/data/
 X-KDE-SubstituteUID=false
 X-KDE-Username=
