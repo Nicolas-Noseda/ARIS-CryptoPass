@@ -116,42 +116,42 @@ class CreatePasswordWidget(QVBoxLayout):
         vbox1.addWidget(self.comboBoxType, alignment=Qt.AlignTop)
 
         vbox2 = QVBoxLayout()
-        self.labelCards = QLabel(self.window)
-        self.labelCards.setText("Cards Number :")
-        self.labelCards.setFont(QtGui.QFont("Sanserif", 15))
-        vbox2.addWidget(self.labelCards, alignment=Qt.AlignBottom)
+        self.labelBank = QLabel(self.window)
+        self.labelBank.setText("Bank Name :")
+        self.labelBank.setFont(QtGui.QFont("Sanserif", 15))
+        vbox2.addWidget(self.labelBank, alignment=Qt.AlignBottom)
 
-        self.cardsValue = QLineEdit(self.window)
-        self.cardsValue.setFont(QtGui.QFont("Sanserif", 15))
-        self.cardsValue.textChanged.connect(self.checkAllValueCards)
-        self.cardsValue.returnPressed.connect(self.saveCreditCards)
-        vbox2.addWidget(self.cardsValue, alignment=Qt.AlignTop)
+        self.bankValue = QLineEdit(self.window)
+        self.bankValue.setFont(QtGui.QFont("Sanserif", 15))
+        self.bankValue.textChanged.connect(self.checkAllValueCards)
+        self.bankValue.returnPressed.connect(self.saveCreditCards)
+        vbox2.addWidget(self.bankValue, alignment=Qt.AlignTop)
 
         vbox3 = QVBoxLayout()
         vbox3.setStretch(1, 1)
-        self.labelDate = QLabel(self.window)
-        self.labelDate.setText("Expiration Date :")
-        self.labelDate.setFont(QtGui.QFont("Sanserif", 15))
-        vbox3.addWidget(self.labelDate, alignment=Qt.AlignBottom)
+        self.labelNumber = QLabel(self.window)
+        self.labelNumber.setText("Cards Number :")
+        self.labelNumber.setFont(QtGui.QFont("Sanserif", 15))
+        vbox3.addWidget(self.labelNumber, alignment=Qt.AlignBottom)
 
-        self.dateValue = QLineEdit(self.window)
-        self.dateValue.setFont(QtGui.QFont("Sanserif", 15))
-        self.dateValue.textChanged.connect(self.checkAllValueCards)
-        self.dateValue.returnPressed.connect(self.saveCreditCards)
-        vbox3.addWidget(self.dateValue, alignment=Qt.AlignTop)
+        self.numberValue = QLineEdit(self.window)
+        self.numberValue.setFont(QtGui.QFont("Sanserif", 15))
+        self.numberValue.textChanged.connect(self.checkAllValueCards)
+        self.numberValue.returnPressed.connect(self.saveCreditCards)
+        vbox3.addWidget(self.numberValue, alignment=Qt.AlignTop)
 
         vbox4 = QVBoxLayout()
         vbox4.setStretch(1, 1)
-        self.labelCode = QLabel(self.window)
-        self.labelCode.setText("Code :")
-        self.labelCode.setFont(QtGui.QFont("Sanserif", 15))
-        vbox4.addWidget(self.labelCode, alignment=Qt.AlignBottom)
+        self.labelDateCode = QLabel(self.window)
+        self.labelDateCode.setText("Date and Code :")
+        self.labelDateCode.setFont(QtGui.QFont("Sanserif", 15))
+        vbox4.addWidget(self.labelDateCode, alignment=Qt.AlignBottom)
 
-        self.codeValue = QLineEdit(self.window)
-        self.codeValue.setFont(QtGui.QFont("Sanserif", 15))
-        self.codeValue.returnPressed.connect(self.saveCreditCards)
-        self.codeValue.textChanged.connect(self.checkAllValueCards)
-        vbox4.addWidget(self.codeValue, alignment=Qt.AlignTop)
+        self.dateCodeValue = QLineEdit(self.window)
+        self.dateCodeValue.setFont(QtGui.QFont("Sanserif", 15))
+        self.dateCodeValue.returnPressed.connect(self.saveCreditCards)
+        self.dateCodeValue.textChanged.connect(self.checkAllValueCards)
+        vbox4.addWidget(self.dateCodeValue, alignment=Qt.AlignTop)
 
         self.buttonValidate = QPushButton(self.window)
         self.buttonValidate.setText("Create the credit cards")
@@ -188,16 +188,16 @@ class CreatePasswordWidget(QVBoxLayout):
             self.buttonValidate.setEnabled(False)
 
     def checkAllValueCards(self):
-        if len(self.cardsValue.text()) > 0 and len(self.dateValue.text()) > 0 and len(self.codeValue.text()) > 0:
+        if len(self.bankValue.text()) > 0 and len(self.numberValue.text()) > 0 and len(self.dateCodeValue.text()) > 0:
             self.buttonValidate.setEnabled(True)
         else:
             self.buttonValidate.setEnabled(False)
 
     def saveCreditCards(self):
-        if len(self.cardsValue.text()) > 0 and len(self.dateValue.text()) > 0 and len(self.codeValue.text()) > 0:
+        if len(self.bankValue.text()) > 0 and len(self.numberValue.text()) > 0 and len(self.dateCodeValue.text()) > 0:
             self.buttonValidate.setEnabled(True)
-            password = "Number=!=" + str(self.cardsValue.text()) + "!?&Date=!=" + str(self.dateValue.text()) \
-                       + "!?&Code=!=" + str(self.codeValue.text())
+            password = "Bank=!=" + str(self.bankValue.text()) + "!?&Number=!=" + str(self.numberValue.text()) \
+                       + "!?&DateCode=!=" + str(self.dateCodeValue.text())
             self.window.goToPasswordScreen(password=password, cryptFile=None, user=None)
         else:
             self.buttonValidate.setEnabled(False)

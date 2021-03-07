@@ -84,7 +84,7 @@ class PasswordScreenWidget(QVBoxLayout):
                 if "Website" in password:
                     vboxPassword.addWidget(WebsitePasswordWidget(window=self.window, website_password=password),
                                            alignment=Qt.AlignTop)
-                elif "Number" in password:
+                elif "Bank" in password:
                     vboxPassword.addWidget(CreditCardsWidget(window=self.window, credit_cards=password),
                                            alignment=Qt.AlignTop)
         else:

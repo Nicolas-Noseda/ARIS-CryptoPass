@@ -1,0 +1,21 @@
+[Desktop Entry]
+Comment[fr_FR]=
+Comment=
+Exec=python3 /home/nicolas/PycharmProjects/ARIS-CryptoPass/launch.py
+GenericName[fr_FR]=
+GenericName=
+Icon=/usr/local/share/IconPNG.png
+MimeType=
+Name[fr_FR]=ARIS-CryptoPass
+Name=ARIS-CryptoPass
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+Version=v1.0.0
+X-DBUS-ServiceName=
+X-DBUS-StartupType=
+X-Icon-Path=/home/nicolas/PycharmProjects/ARIS-CryptoPass/data/
+X-KDE-SubstituteUID=false
+X-KDE-Username=
