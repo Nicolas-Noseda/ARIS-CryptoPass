@@ -23,6 +23,8 @@ class CryptoPassApp(QApplication):
 
     def retrieveListOfUser(self):
         list_user = []
+        if not os.path.exists(os.path.dirname(os.path.realpath(__file__)) + os.path.sep + "files"):
+            os.makedirs(os.path.dirname(os.path.realpath(__file__)) + os.path.sep + "files")
         list_files = os.listdir(os.path.dirname(os.path.realpath(__file__)) + os.path.sep + "files")
         for file in list_files:
             if ".encrypted" in file:
