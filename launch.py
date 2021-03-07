@@ -1,5 +1,5 @@
 import sys
-from classes.app import CryptoPassApp
+from src.classes.app import CryptoPassApp
 
 
 def main():
