@@ -10,7 +10,8 @@ When saving Password you can use the very strong suggested password :wink:
 # Table of contents
 
 - [Usage](#usage)
-- [Installation](#installation)
+- [Installation For Linux](#installation-for-linux)
+- [Installation For Windows](#installation-for-windows)
 
  # Usage
 
@@ -60,6 +61,45 @@ When saving Password you can use the very strong suggested password :wink:
 
   ![image](docs/AccessPage.png) 
 
-# Installation
+# Installation For Linux
+
+[(Back to top)](#table-of-contents)
+
+1. Copy the GitHub project to any folder :
+
+ `git clone https://github.com/Alastyn08/ARIS-CryptoPass.git`
+ 
+2. Go to the data folder and modify the "ARIS-CryptoPass.desktop"
+ 
+ `sudo nano data/ARIS-CryptoPass.desktop`
+
+3. Modify the 4th line : 
+
+ `Exec=python3 PATH_TO_ARIS-CRYPTOPASS/ARIS-CryptoPass/launch.py`
+
+4. Launch the setup.py file :
+
+ `sudo python3 setup.py install`
+
+5. ARIS-CryptoPass should be available on /usr/share/applications :
+
+Launch this to create link to your desktop : 
+ 
+ `ln -s /usr/share/applications/ARIS-CryptoPass.desktop ~/Desktop/ARIS-CryptoPass.desktop`
+
+or if the "~" don't work :
+ 
+ `ln -s /usr/share/applications/ARIS-CryptoPass.desktop YOUR_HOME_DIRECTORY/Desktop/ARIS-CryptoPass.desktop`
+ 
+or if the Desktop is Bureau :
+
+ `ln -s /usr/share/applications/ARIS-CryptoPass.desktop ~/Bureau/ARIS-CryptoPass.desktop`
+
+
+Your good to go :smile:
+If you have any issue, fell free to create an issue.
+
+
+# Installation For Windows (not yet available)
 
 [(Back to top)](#table-of-contents)
