@@ -17,14 +17,16 @@ When saving Password you can use the very strong suggested password :wink:
 [(Back to top)](#table-of-contents)
 
 - Launch ARIS-CryptoPass and create user, you should use a very strong passphrase and never forget it : 
+
   ![image](docs/CreateUser.png)
 
 - The Password Screen, on the top you have an input to search in the password list : 
+
   ![image](docs/PasswordScreenEmpty.png)
 
 - Click on Create new password to save new password or credit cards :
-  ![image](docs/CreatePassword.png)
-  ![image](docs/CreateCreditCards.png)
+
+  ![image](docs/CreatePassword.png) ![image](docs/CreateCreditCards.png)
 
 - How to fill the Create Password Screen : 
   1) Fill the Website input with name of the Website ("Github", "Gmail", "Youtube", ...)
@@ -37,13 +39,17 @@ When saving Password you can use the very strong suggested password :wink:
   3) Fill the Date and code input with the expiration date and code of the cards ("xx/xx xxx") 
 
 - Password and Credit Cards screen :
+
   ![image](docs/PasswordScreenWithPassword.png)
   
   1) You can use the "Show" button to show the username and password and "Hide" to hide it
+ 
     ![image](docs/PasswordScreenShowHide.png)
+    
   2) You can use the X to delete a saved password or credit cards
 
 - When you reduce or close ARIS-CryptoPass you will have it on your System Tray (little robot head)
+
   ![image](docs/SystemTray.png)
   
   1) Left-Click on the robot head => reopen ARIS-CryptoPass
@@ -51,6 +57,7 @@ When saving Password you can use the very strong suggested password :wink:
 
 
 - When you relaunch ARIS-CryptoPass after saving : 
+
   ![image](docs/AccessPage.png) 
 
 # Installation
