@@ -1,5 +1,3 @@
-import os
-
 from setuptools import setup
 
 setup(
@@ -12,5 +10,8 @@ setup(
     author_email='nicolas.noseda.pro@gmail.com',
     description='Software to encrypt and save password and credit cards',
     data_files=[('/usr/share/applications', ['data/ARIS-CryptoPass.desktop']),
-                ('/usr/local/share', ['data/IconPNG.png'])]
+                ('/usr/local/share', ['data/IconPNG.png'])],
+    install_requires=[
+        "PyQt5", "cryptography"
+    ]
 )

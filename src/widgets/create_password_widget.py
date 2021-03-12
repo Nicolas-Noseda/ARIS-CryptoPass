@@ -1,7 +1,7 @@
 import random
 import string
 
-from PyQt5 import QtGui, sip
+from PyQt5 import QtGui
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QVBoxLayout, QGroupBox, QGridLayout, QLabel, QComboBox, QPushButton, QLineEdit
 

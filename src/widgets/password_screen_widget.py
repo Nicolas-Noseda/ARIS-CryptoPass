@@ -1,7 +1,6 @@
 from PyQt5 import QtGui
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QInputMethodEvent
-from PyQt5.QtWidgets import QVBoxLayout, QGroupBox, QGridLayout, QScrollArea, QScrollBar, QPushButton, QHBoxLayout, \
+from PyQt5.QtWidgets import QVBoxLayout, QGroupBox, QGridLayout, QScrollArea, QPushButton, QHBoxLayout, \
     QLineEdit, QLabel
 
 from src.widgets.password.credit_cards_widget import CreditCardsWidget

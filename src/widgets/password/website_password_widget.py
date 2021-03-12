@@ -1,7 +1,6 @@
 from PyQt5 import QtGui
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QVBoxLayout, QGridLayout, QGroupBox, QLabel, QPushButton, QWidget
+from PyQt5.QtWidgets import QGridLayout, QGroupBox, QLabel, QPushButton, QWidget
 
 from src.model.website_password_model import WebsitePasswordModel
 

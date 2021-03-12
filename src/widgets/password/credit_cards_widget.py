@@ -1,6 +1,5 @@
 from PyQt5 import QtGui
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QWidget, QGroupBox, QGridLayout, QLabel, QPushButton
 
 from src.model.credit_cards_model import CreditCardsModel
