@@ -65,6 +65,7 @@ class MainWindow(QMainWindow):
             self.menu.addAction(self.exitAction)
             self.tray.setContextMenu(self.menu)
             self.tray.show()
+            self.tray.setVisible(True)
         else:
             self.tray.show()
             self.tray.setVisible(True)

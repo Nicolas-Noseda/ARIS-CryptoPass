@@ -12,6 +12,7 @@ class CryptoPassApp(QApplication):
 
     def __init__(self, *args):
         QApplication.__init__(self, *args)
+        self.setStyle('Breeze')
         list_user = self.retrieveListOfUser()
         self.window = MainWindow(list_user=list_user)
         self.window.show()
