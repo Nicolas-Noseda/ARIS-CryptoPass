@@ -103,3 +103,8 @@ If you have any issue, fell free to create an issue.
 # Installation For Windows (not yet available)
 
 [(Back to top)](#table-of-contents)
+
+You can find the setup file in the Setup Folder, just need to launch it and install ARIS-CryptoPass :wink:
+
+There is an issue with the Windows 10, the app don't want to go to the system tray => need to kill the app in the proccess 😧
+
